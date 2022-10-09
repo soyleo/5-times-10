@@ -6,17 +6,25 @@ using UnityEngine.InputSystem;
  public class Player_Movement : MonoBehaviour
 {
     //Player Movement Script ///////////////////////////////////////////
-    //Only controls the "Player" Game Object Movement
+    //Only controls the "Player" Game Object Movement using Kinematics
     ////////////////////////////////////////////////////////////////////
     //Variables/////////////////////////////////////////////////////////
-    public InputAction PlayerMovement; //Reference for Unity Input System, Gets Movement Inputs
+    [SerializeField] InputAction PlayerMovement; //Reference for Unity Input System, Gets Movement Inputs
     Vector2 moveDirection = Vector2.zero;
     //Player Move Max Speed
-    [Header ("Player Move Speed")] public float Player_MaxMSpeed = 0f;
+    [Header ("Player Move Speed")] [SerializeField] float Player_MaxMSpeed = 0f;
     //Player Move Acceleration "How Fast player goes from 0 to Max Speed"
-    public float Player_Acceleration = 0.2f;
+    [SerializeField] float Player_Acceleration = 0.2f;
     //Player Move Speed
-     [Range (0, 10)] public float Player_MSpeed = 0f;
+     [Range (0, 10)] [SerializeField] float Player_MSpeed = 0f;
+     //For Collisions Check
+     [Header ("Actor Size")] [SerializeField] float actorWidth;
+     [SerializeField] float actorHeight;
+     [Header ("Cant pass thru")] [SerializeField] LayerMask collisionLayer;
+    ////////////////////////////////////////////////////////////////////
+    // Properties///////////////////////////////////////////////////////
+     float deltaX => moveDirection.x * Player_MSpeed * Time.deltaTime;
+     float deltaY => moveDirection.y * Player_MSpeed * Time.deltaTime;
     ////////////////////////////////////////////////////////////////////
     //Functions/////////////////////////////////////////////////////////
     //OnEnable, Note: requisite for Unity Input System
@@ -36,28 +44,62 @@ using UnityEngine.InputSystem;
     // Update is called once per frame
     void Update()
     {
-        moveDirection = PlayerMovement.ReadValue<Vector2>();
+    
     }
     //////////////////////////////////////////////////////////////////
     private void FixedUpdate()
     {   
+        Move();
+
+    }
+    public void Move()
+    {
+        moveDirection = PlayerMovement.ReadValue<Vector2>(); // Gets Player Input
+
+        // Physic Raycasts 2D
+        RaycastHit2D hitR = Physics2D.Raycast(transform.position, Vector2.right, actorWidth/2, collisionLayer);
+        RaycastHit2D hitL = Physics2D.Raycast(transform.position, Vector2.left, actorWidth/2, collisionLayer);
+        RaycastHit2D hitU = Physics2D.Raycast(transform.position, Vector2.up, actorHeight/2, collisionLayer);
+        RaycastHit2D hitD = Physics2D.Raycast(transform.position, Vector2.down, actorHeight/2, collisionLayer);
+        // Debug draw Raycasts 2D
+        Debug.DrawRay(transform.position, Vector2.right * actorWidth/2, Color.blue);
+        Debug.DrawRay(transform.position, Vector2.left * actorWidth/2, Color.blue);
+        Debug.DrawRay(transform.position, Vector2.up * actorHeight/2, Color.blue);
+        Debug.DrawRay(transform.position, Vector2.down * actorHeight/2, Color.blue);
+
         if (moveDirection != Vector2.zero) //Check if the player is pressing any movement key
         {
+            if (hitD){Debug.Log("Player detects a wall down");} //Debug if detects a Wall
+            if (hitU){Debug.Log("Player detects a wall up");}
+            if (hitL){Debug.Log("Player detects a wall left");}
+            if (hitR){Debug.Log("Player detects a wall right");}
+
+
             if (Player_MSpeed<Player_MaxMSpeed) //check if the player is not at max speed
             {
                 Player_MSpeed+= Player_Acceleration; // Increment Speed
+            }
+
+            if(moveDirection.x == 1 && !hitR) //Verify if the player wants to move to the right and that there is no wall
+            {
+                    transform.Translate(deltaX,0,0); // Transform . Translate only on X 
+            }
+            if(moveDirection.x == -1 && !hitL) //Verify if the player wants to move to the left and that there is no wall
+            {
+                    transform.Translate(deltaX,0,0); // Transform . Translate; only on X
+            }
+            if(moveDirection.y == 1 && !hitU) //Verify if the player wants to move to the up and that there is no wall
+            {
+                    transform.Translate(0,deltaY,0); // Transform . Translate only on Y
+            }
+            if(moveDirection.y == -1 && !hitD) //Verify if the player wants to move to the down and that there is no wall
+            {
+                 transform.Translate(0,deltaY,0); // Transform . Translate  only on Y
             }
         }
         else 
         {
             Player_MSpeed = 0f; // set Speed to 0
         }
-    ///////////////////////////////////////////////////////////////
-    // Transform . Translate
-        transform.Translate(
-            moveDirection.x * Player_MSpeed * Time.deltaTime,
-            moveDirection.y * Player_MSpeed * Time.deltaTime,0);
-    //////////////////////////////////////////////////////////////
-
     }
 }  
