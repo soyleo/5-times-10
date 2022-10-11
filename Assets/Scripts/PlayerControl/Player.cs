@@ -16,11 +16,11 @@ public class Player : MonoBehaviour
     //Stored Positions
     [Header ("Player Stored Positions")]
     //Starting Position
-    public Vector3 Player_StartPos;
+    [SerializeField] Vector3 Player_StartPos;
     //Current Position
-    public Vector3 Player_CurrentPos;
+    [SerializeField] Vector3 Player_CurrentPos;
     //Last Saved Position
-    public Vector3 Player_LastSavedPos;
+    [SerializeField] Vector3 Player_LastSavedPos;
     //Attack and Damage
     [Header ("Player Attack Speed and Damage")]
     //AttackSpeed

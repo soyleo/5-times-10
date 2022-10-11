@@ -15,14 +15,6 @@ public class Timers : MonoBehaviour
     // Player ref
     public Player player;
 
-    //Player Positions
-    [Header ("Player Stored Positions")]
-    //Starting Position
-    public Vector3 Player_StartPos;
-    //Current Position
-    public Vector3 Player_CurrentPos;
-    //Last Saved Position
-    public Vector3 Player_LastSavedPos;
     ///////////////////////////////////////////////////////////////////////
     //Functions
     /////////////////////////////////////////////////////////////////////////
@@ -35,9 +27,6 @@ public class Timers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Player_StartPos = player.Player_StartPos;
-        Player_CurrentPos = player.Player_CurrentPos;
-        Player_LastSavedPos = player.Player_LastSavedPos;
         TenSecondsCount();       
     }
 
