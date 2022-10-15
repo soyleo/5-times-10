@@ -1,0 +1,21 @@
+Code Tasks
+-------------------
+Agregar UI Tiempo - 
+Agregar Checkpoints Prefabs - Done
+Colisiones - Need Fix
+Animaciones de Personaje - Need Fix
+Ataque -
+Objetos destructibles -
+Tipos de daño elemental -
+proyectiles (con var global de velocidad) -
+torretas -
+Trampas de puas -
+Elementos sobre y detras del personaje - need fix
+
+-------------------------
+Graficos
+-------------------------
+trampas de puas - Done
+torretitas (linea,cruz) - Done
+
+

@@ -39,11 +39,15 @@ public class Checkpoints : MonoBehaviour
         {
             if( Is_A_Big_Checkpoint == true)
             {
+                Debug.Log("Player reached a Big Checkpoint");
                 Debug.Log("Updated Player Start Position");
                 Player.UpdateStartPos();
+                Debug.Log("Updated Player Last Saved Position");
+                Player.UpdateLastSavedPos();
             }
             else 
             {
+                Debug.Log("Player reached a Small Checkpoint");
                 Debug.Log("Updated Player Last Saved Position");
                 Player.UpdateLastSavedPos();
             }

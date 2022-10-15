@@ -21,6 +21,8 @@ using UnityEngine.InputSystem;
      [Header ("Actor Size")] [SerializeField] float actorWidth;
      [SerializeField] float actorHeight;
      [Header ("Cant pass thru")] [SerializeField] LayerMask collisionLayer;
+    //Animator
+    public Animator Animator;
     ////////////////////////////////////////////////////////////////////
     // Properties///////////////////////////////////////////////////////
      float deltaX => moveDirection.x * Player_MSpeed * Time.deltaTime;
@@ -69,15 +71,21 @@ using UnityEngine.InputSystem;
 
         if (moveDirection != Vector2.zero) //Check if the player is pressing any movement key
         {
+            Animator.SetTrigger("IsWalking");
             if (hitD){Debug.Log("Player detects a wall down");} //Debug if detects a Wall
             if (hitU){Debug.Log("Player detects a wall up");}
             if (hitL){Debug.Log("Player detects a wall left");}
             if (hitR){Debug.Log("Player detects a wall right");}
 
+            
 
             if (Player_MSpeed<Player_MaxMSpeed) //check if the player is not at max speed
             {
                 Player_MSpeed+= Player_Acceleration; // Increment Speed
+            }
+            else
+            {
+                Animator.SetTrigger("IsRunning");
             }
 
             if(moveDirection.x == 1 && !hitR) //Verify if the player wants to move to the right and that there is no wall
@@ -99,6 +107,8 @@ using UnityEngine.InputSystem;
         }
         else 
         {
+            Animator.ResetTrigger("IsRunning");
+            Animator.ResetTrigger("IsWalking");
             Player_MSpeed = 0f; // set Speed to 0
         }
     }
