@@ -3,7 +3,7 @@ Code Tasks
 Agregar UI Tiempo - 
 Agregar Checkpoints Prefabs - Done
 Colisiones - Need Fix
-Animaciones de Personaje - Need Fix
+Animaciones de Personaje - Done
 Ataque -
 Objetos destructibles -
 Tipos de daño elemental -
