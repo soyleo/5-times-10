@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 300
+  m_AssetsPPU: 200
   m_RefResolutionX: 1920
   m_RefResolutionY: 1080
   m_UpscaleRT: 0
@@ -104,6 +104,36 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!1 &1137491374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1137491375}
+  m_Layer: 9
+  m_Name: colliderOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1137491375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137491374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5835848047115058170}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5835848047115058168
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +166,7 @@ Transform:
   m_Children:
   - {fileID: 5835848048571783133}
   - {fileID: 519420032}
+  - {fileID: 1137491375}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -218,15 +249,17 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Player Movement
       m_Flags: 8
-  Player_MaxMSpeed: 10
+  Player_MaxMSpeed: 5
   Player_Acceleration: 0.2
   Player_MSpeed: 0
-  actorWidth: 1
-  actorHeight: 1
+  actorWidth: 0.1
+  actorHeight: 0.2
+  raycastOrigin: {fileID: 1137491375}
   collisionLayer:
     serializedVersion: 2
     m_Bits: 72
   Animator: {fileID: 483719316}
+  Player_Sprite: {fileID: 5835848048571783134}
 --- !u!70 &207089477
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -240,8 +273,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006374657, y: 0.0063747764}
-  m_Size: {x: 0.5764955, y: 0.5920242}
+  m_Offset: {x: -0.0010683388, y: -0.10884382}
+  m_Size: {x: 0.0405508, y: 0.18647626}
   m_Direction: 0
 --- !u!1 &5835848048571783132
 GameObject:
