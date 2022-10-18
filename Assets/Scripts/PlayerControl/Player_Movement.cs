@@ -55,8 +55,12 @@ public class Player_Movement : MonoBehaviour
     //////////////////////////////////////////////////////////////////
     private void FixedUpdate()
     {
-        Move();
-
+        if(!PlayerBlackboard.Instance.isAttacking){
+            Move();
+        }
+        else {
+            moveDirection = Vector2.zero;
+        }
     }
     public void Move()
     {
@@ -83,7 +87,7 @@ public class Player_Movement : MonoBehaviour
             Player_Sprite.flipX = false;
         }
 
-        //HitBox detection
+        //Hit Box detection
         if(hitL){
             if(moveDirection.x < 0){
                 moveDirection.x = 0;
@@ -113,6 +117,7 @@ public class Player_Movement : MonoBehaviour
         if (moveDirection != Vector2.zero) //Check if the player is pressing any movement key
         {
 
+            PlayerBlackboard.Instance.isMoving = true;
             Animator.SetBool("IsWalking", true);
             if (hitD) { Debug.Log("Player detects a wall down"); } //Debug if detects a Wall
             if (hitU) { Debug.Log("Player detects a wall up"); }
@@ -132,6 +137,7 @@ public class Player_Movement : MonoBehaviour
         }
         else
         {
+            PlayerBlackboard.Instance.isMoving = false;
             Animator.SetBool("IsWalking", false);
             Animator.SetBool("IsRunning", false);
             Player_MSpeed = 0f; // set Speed to 0
