@@ -87,6 +87,8 @@ public class Player_Movement : MonoBehaviour
             Player_Sprite.flipX = false;
         }
 
+        PlayerBlackboard.Instance.isFacingRigth = !Player_Sprite.flipX;
+
         //Hit Box detection
         if(hitL){
             if(moveDirection.x < 0){

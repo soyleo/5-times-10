@@ -20,4 +20,5 @@ public class PlayerBlackboard : MonoBehaviour
 
     public bool isAttacking = false;
     public bool isMoving = false;
+    public bool isFacingRigth = true;
 }
