@@ -7,22 +7,21 @@ public class Interruptores : MonoBehaviour
 
     public bool State = false;
     public GameObject[] Interact_With;
+    [SerializeField] SpriteRenderer SpriteRend;
+    [SerializeField] Sprite Active_Sprite;
+    [SerializeField] Sprite Inactive_Sprite;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(State==true)
-        {
-            Call_Interaction();
-        }
+        checkState();
     }
 
-    public void Switch_State()
+    public void change_State()
     {
         if(State == false)
         {
@@ -42,4 +41,16 @@ public class Interruptores : MonoBehaviour
         }
     }
 
+        public void checkState()
+    {
+        if(State == true)
+        {
+            SpriteRend.sprite = Active_Sprite;
+            Call_Interaction();
+        }
+        else
+        {
+            SpriteRend.sprite = Inactive_Sprite;
+        }
+    }
 }
