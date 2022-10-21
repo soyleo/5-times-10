@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 207089477}
   - component: {fileID: 1603972231}
   - component: {fileID: 4941014167305076540}
+  - component: {fileID: 1878182897993043250}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -374,6 +375,39 @@ MonoBehaviour:
   originPoint: {x: 0, y: 0}
   endPoint: {x: 0, y: 0}
 --- !u!114 &4941014167305076540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5835848047115058168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2844451e4600914f9824aec6918e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAttack:
+    m_Name: Player Attack
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 81b22e1a-4573-433c-8d02-19bd36cc6e3c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 88f54015-803d-4cc0-84af-966f9dc6be7c
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Attack
+      m_Flags: 0
+  playerAnimator: {fileID: 483719316}
+  originRigth: {fileID: 2116096331}
+  originLeft: {fileID: 1691793498}
+  originPoint: {x: 0, y: 0}
+  endPoint: {x: 0, y: 0}
+--- !u!114 &1878182897993043250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
